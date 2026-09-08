@@ -33,10 +33,10 @@ void loop() {
   // print the string when a newline arrives:
   if (isStringComplete) {
     if (inputString.equals("LED ON")){
-      digitalWrite(12, HIGH);
+      digitalWrite(13, HIGH);
       Serial.println("The LED is now on");
     } else if (inputString.equals("LED OFF")){
-      digitalWrite(12, LOW);
+      digitalWrite(13, LOW);
       Serial.println("The LED is now OFF");
     } else {
       Serial.print("Unknown Command --> ");
