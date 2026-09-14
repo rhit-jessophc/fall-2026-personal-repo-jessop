@@ -1,10 +1,10 @@
 clc
 clear all;
 
-plateLoaderMenuControl()
 s = serialport(['COM8'], 19200, "Timeout", 15);
 pause(1.5);
 
+plateLoaderMenuControl(s)
 
 
 % fprintf('Connecting to robot...');
