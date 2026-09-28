@@ -2,6 +2,10 @@ import flask
 
 app = flask.Flask(__name__)
 
+@app.get("/")
+def handle_naked_domain():
+    return flask.redirect("/api/hello/hadley")
+
 @app.route("/")
 def hello_route():
     return "There are bees under my skin!!!"
