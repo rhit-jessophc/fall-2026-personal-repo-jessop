@@ -6,6 +6,11 @@ app = flask.Flask(__name__)
 def handle_naked_domain():
     return flask.redirect("/api/hello/hadley")
 
+@app.get("/api/<command>")
+def handle_plateloader_commands(command):
+    #TODO actually run the command
+    return "sucsess!"
+
 @app.route("/")
 def hello_route():
     return "There are bees under my skin!!!"
