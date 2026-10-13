@@ -17,7 +17,7 @@ void loop() {
         handleLedOn();
     } else if (inputString.equals("LED OFF")) {
       handleLedOff();
-    } else if {(inputString.startsWith("FLASH"))
+    } else if (inputString.startsWith("FLASH")) {
         handleFlash(inputString.substring(5));
     } else {
       Serial.print("Unknown command --> ");
@@ -26,8 +26,8 @@ void loop() {
     // reset terminal input for next command 
     inputString = "";
     isStringComplete = false;
-}
-}
+}}
+
 
 void serialEvent() {
   while (Serial.available()) {
@@ -53,7 +53,7 @@ void handleLedOff() {
 void handleFlash(String params) {
     //remove spaces in command 
     params.trim();
-    int spaceIndex = params.indexOf(' ')
+    int spaceIndex = params.indexOf(' ');
     
     // if there are no spaces, print error message to terminal 
       if (spaceIndex == -1) {
@@ -65,7 +65,7 @@ void handleFlash(String params) {
     numFlashes = params.substring(0, spaceIndex).toInt();
     flashPeriod = params.substring(spaceIndex + 1).toInt();
 
-    Serial.println(string("Flashing ") + numFlashes + " " + flashPeriod);
+    Serial.println(String("Flashing ") + numFlashes + " " + flashPeriod);
 
     while (numFlashes > 0) {     
 
