@@ -2,13 +2,13 @@ import serial
 import time
 
 class Plateloader:
-    def __init__(self, port="/dev/tty/ACM0"):
+    def __init__(self, port="/dev/ttyACM0"):
         self.port = port
         self.ser = None
     
     def connect(self):
         if self.ser and self.ser.is_open:
-            self.ser.open()
+            return
         self.ser = serial.Serial(port=self.port, baudrate=19200, timeout=5)
         time.sleep(2.0)
         self.ser.reset_input_buffer()
