@@ -42,12 +42,12 @@ void serialEvent() {
 
 void handleLedOn() {
     digitalWrite(13, HIGH);
-      Serial.println("The LED is now on!\n");
+      Serial.println("LED On\n");
 }
 
 void handleLedOff() {
     digitalWrite(13, LOW);
-      Serial.println("The LED is now off!\n");
+      Serial.println("LED Off\n");
 }
 
 void handleFlash(String params) {
@@ -65,7 +65,7 @@ void handleFlash(String params) {
     numFlashes = params.substring(0, spaceIndex).toInt();
     flashPeriod = params.substring(spaceIndex + 1).toInt();
 
-    Serial.println(String("Flashing ") + numFlashes + " " + flashPeriod + "\n");
+    Serial.println(String("Flashes = ") + numFlashes + " PeriodMs = " + flashPeriod + "\n");
 
     while (numFlashes > 0) {     
 
