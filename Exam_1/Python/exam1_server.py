@@ -28,7 +28,7 @@ def handle_blinker_commands_LED_ON_OFF(command):
 
 @app.get("/api/flash/<numFlash>/<periodFlash>")
 def handle_blinker_commands_FLASH(numFlash, periodFlash):
-    if numFlash.isdigit() == False or numFlash.isdigit() == False:
+    if numFlash.isdigit() == False or periodFlash.isdigit() == False:
         return "Input Not A Number"
     with serial_lock:
         response = blinker.send_command_FLASH(numFlash, periodFlash)

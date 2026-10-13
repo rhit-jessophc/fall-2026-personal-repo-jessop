@@ -15,24 +15,16 @@ function main() {
 
 
     document.querySelector("#LEDon").onclick = () => {
-        sendCommand("LED on");
+        sendCommand("led/on");
     };
     document.querySelector("#LEDoff").onclick = () => {
-        sendCommand("LED off");
-    };
-
-
-    document.querySelector("#gOpen").onclick = () => {
-        sendCommand("GRIPPER OPEN");
-    };
-    document.querySelector("#gClose").onclick = () => {
-        sendCommand("GRIPPER CLOSE");
+        sendCommand("led/off");
     };
 
     document.querySelector("#FLASH").onclick = () => {
       let numFlash = document.querySelector("#numFlash").value;
-      let posFlash = document.querySelector("#perFlash").value;
-      sendCommand(`FLASH ${numFlash} ${posFlash}`);
+      let perFlash = document.querySelector("#perFlash").value;
+      sendCommand(`flash/${numFlash}/${perFlash}`);
       
     }
 
