@@ -1,0 +1,2 @@
+response = webread("http://fisherds-pi5.rose-hulman.edu/api/RESET")
+
