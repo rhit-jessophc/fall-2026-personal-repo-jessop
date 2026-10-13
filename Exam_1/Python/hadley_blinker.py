@@ -17,17 +17,17 @@ class HadleyBlinker:
         if self.ser and self.ser.is_open:
             self.ser.close()
 
-    # def send_command(self, command):
-    #     self.ser.reset_input_buffer()
-    #     message_bytes = (command + "\n").encode()
-    #     print(message_bytes)
+    def send_command(self, command):
+        self.ser.reset_input_buffer()
+        message_bytes = (command + "\n").encode()
+        print(message_bytes)
 
-    #     self.ser.write(message_bytes)
+        self.ser.write(message_bytes)
 
-    #     response_bytes = self.ser.readline()
-    #     print(response_bytes)
-    #     response = response_bytes.decode().strip()
-    #     return response
+        response_bytes = self.ser.readline()
+        print(response_bytes)
+        response = response_bytes.decode().strip()
+        return response
 
 
     def send_command_LED_ON_OFF(self, command):
@@ -45,7 +45,7 @@ class HadleyBlinker:
 
     def send_command_FLASH(self, numFlash, periodFlash):
             self.ser.reset_input_buffer()
-            message_bytes = ("FLASH" + numFlash + " " + periodFlash + "\n").encode()
+            message_bytes = ("FLASH " + numFlash + " " + periodFlash + "\n").encode()
             print(message_bytes)
     
             self.ser.write(message_bytes)
