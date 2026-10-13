@@ -65,6 +65,8 @@ void handleFlash(String params) {
     numFlashes = params.substring(0, spaceIndex).toInt();
     flashPeriod = params.substring(spaceIndex + 1).toInt();
 
+    Serial.println(string("Flashing ") + numFlashes + " " + flashPeriod);
+
     while (numFlashes > 0) {     
 
         digitalWrite(13, HIGH);
