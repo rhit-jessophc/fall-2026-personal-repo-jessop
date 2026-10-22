@@ -1,4 +1,5 @@
 import motor
+import time
 
 class DriveSystem:
 
@@ -32,4 +33,23 @@ class DriveSystem:
             self.car.right_upper_wheel(0)
             self.car.right_lower_wheel(0)
             pass
+
+        def stop(self)
+            self.set_speeds(0,0,0,0)
+
+        def go_straight_for_seconds(self, seconds, speed)
+            self.go(speed, speed)
+            time.sleep(seconds)
+            self.stop()
+
+        def go_straight_for_inches(self, inches, speed):
+            """ Goes straight for the given number of inches at the given speed. """
+            m = 0.2
+            B = 0
+            inches_per_second = m * speed + B
+            seconds = inches / inches_per_second
+            self.go_straight_for_seconds(seconds, speed)
+
+
+
              

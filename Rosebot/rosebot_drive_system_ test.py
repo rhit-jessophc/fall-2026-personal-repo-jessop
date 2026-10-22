@@ -93,7 +93,7 @@ def run_test_go_straight_for_seconds(robot: Rosebot):
         # TODO: 4. Call the  go_straight_for_seconds  method of the   drive_system
         #  of the robot, sending it the input  seconds  and  speed.
         # -------------------------------------------------------------------------
-
+        robot.drive_system.go_straight_for_seconds()
 
 def run_test_go_straight_for_inches(robot: Rosebot):
     """
