@@ -1,7 +1,7 @@
 import time
 from pca9685 import PCA9685
 
-class Ordinary_Car:
+class OrdinaryCar:
     def __init__(self):
         self.pwm = PCA9685(0x40, debug=True)
         self.pwm.set_pwm_freq(50)
