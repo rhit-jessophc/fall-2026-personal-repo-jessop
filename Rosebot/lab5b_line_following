@@ -1,0 +1,24 @@
+from rosebot import rosebot
+
+def main():
+    print()
+    robot = Rosebot()
+
+
+    try:
+        while True:
+            # get ultrasonic sensor
+            #if distance <20cm
+            #   stop the robot
+            # else 
+
+            #   get the line sensor readings
+            #   Adjust wheel speeds based on YOUR strategy 
+
+
+
+            time.sleep(0.1)
+
+    except KeyboardInterrupt:
+        robot.drive_system.stop()
+        print("goodbye!")

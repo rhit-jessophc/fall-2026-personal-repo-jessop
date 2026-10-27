@@ -4,6 +4,9 @@ import signal
 
 
 def button_state():
+    button_red = gz.Button(22)
+    button_yellow = gz.Button(23)
+    button_green = gz.Button(24)
     button = gz.Button(25)
     
     while True:

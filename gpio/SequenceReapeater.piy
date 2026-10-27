@@ -1,0 +1,82 @@
+import gpiozero as gz
+import time
+import signal
+import array as arr
+
+
+def button_state():
+    button_red = gz.Button(22)
+    button_yellow = gz.Button(23)
+    button_green = gz.Button(24)
+    button = gz.Button(25)
+    
+    while True:
+        if button.is_pressed:
+            print("Button is pressed")
+        else:
+            print("Button is not pressed")
+        time.sleep(0.5)
+
+def function_using_def():
+    print("This is a function using the keyword def")
+    print("it can have many lines")
+
+function_using_lambda = lambda: print("This is a func using the keyword lambda")
+
+def some_helper_function(led_board, brightness):
+    print("Some helper function")
+    led_board.value = (brightness, 0, brightness)
+    time.sleep(1)
+    led_board.off()
+    time.sleep(1)
+
+def blink_led(led_board, led,a):
+    led_board[led].on()
+    a.append(led)
+    time.sleep(1)
+    led_board[led].off()
+    time.sleep(1)
+    print("Blinking LED " + str(led) + " and adding to array: " + str(a))
+
+def blink_sequence(led_board, a):
+    print("blink in sequence")
+    print(a)
+    for i in a:
+        led_board[i].on()
+        time.sleep(1)
+        led_board[i].off()
+        time.sleep(1)
+
+def button_events():
+    print("Button Events")
+    button_red = gz.Button(22)
+    button_yellow = gz.Button(23)
+    button_green = gz.Button(24)
+    button = gz.Button(25)
+    led_board = gz.LEDBoard(14,15,18)
+    a = [];
+
+
+     # these are events. they trigger when the button is pressed
+
+    # button.when_pressed = function_using_def
+    # button.when_released = function_using_lambda
+    button.when_held = lambda: blink_sequence(led_board, a)
+    button_red.when_held = lambda:  blink_led(led_board, 0,a)
+    # button_red.when_released = lambda: blink_sequence
+    button_yellow.when_held = lambda: blink_led(led_board, 1,a)
+    # button_yellow.when_released = lambda: blink_sequence
+    button_green.when_held = lambda: blink_led(led_board, 2,a)
+    # button_green.when_released = lambda: blink_sequence
+
+    # this is an event. it triggers when the button is pressed
+
+    signal.pause()
+
+
+def main():
+    print("Pushbuttons")
+    # button_state()
+    button_events()
+
+main()
