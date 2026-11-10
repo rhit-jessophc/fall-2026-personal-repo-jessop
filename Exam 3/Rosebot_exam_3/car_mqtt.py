@@ -15,31 +15,71 @@ class App:
         self.mqtt_client = mh.MqttClient()
         self.mqtt_client.connect(subscription_topic_name="me435/fulksdm/#",
                                 publish_topic_name="me435/fulksdm/to_computer",
-                                use_off_campus_broker=False)
+                                use_off_campus_broker=True)
         self.mqtt_client.callback = self.mqtt_callback
 
     def mqtt_callback(self, message_type, message_payload):
         print("Recieved type: ", message_type)
         print("Recieved payload: ", message_payload)
 
-        if message_type == "set_speeds":
-            self.robot.drive_system.set_speeds(message_payload[0], message_payload[1], message_payload[2], message_payload[3]) 
+        if message_type == "left":
+            direction = message_payload[0]
+            run_time = message_payload[1]
+            speed = message_payload[2]
+            if direction == 1:
+                self.robot.drive_system.set_speeds(speed, speed, 0, 0)
+                time.sleep(run_time)
+            elif direction == 0:
+                self.robot.drive_system.set_speeds(-speed, -speed, 0, 0)
+                time.sleep(run_time)
+            self.robot.drive_system.stop()
 
-        if message_type == "stop":
-            self.robot.drive_system.stop() 
+        if message_type == "right":
+            direction = message_payload[0]
+            run_time = message_payload[1]
+            speed = message_payload[2]
+            if direction == 1:
+                self.robot.drive_system.set_speeds(0, 0, speed, speed)
+                time.sleep(run_time)
+            elif direction == 0:
+                self.robot.drive_system.set_speeds(0, 0, -speed, -speed)
+                time.sleep(run_time)
+            self.robot.drive_system.stop()
 
-        if message_type == "beep":
-            self.robot.buzzer.beep(on_time=0.1, off_time=0.3, n=2)  
+        if message_type == "both":
+            direction = message_payload[0]
+            run_time = message_payload[1]
+            speed = message_payload[2]
+            if direction == 1:
+                self.robot.drive_system.set_speeds(speed, speed, speed, speed)
+                time.sleep(run_time)
+            elif direction == 0:
+                self.robot.drive_system.set_speeds(-speed, -speed, -speed, -speed)
+                time.sleep(run_time)
+            self.robot.drive_system.stop()
 
-        if message_type == "is_streaming":
-            self.is_streaming = message_payload
 
-        if message_type == "mode":
-            self.mode = message_payload
-            if self.mode == "drive_until_wall" or self.mode == "drive_until_line":
-                self.robot.drive_system.go(25, 25)
-            if self.mode == "none":
-                self.robot.drive_system.stop()
+        
+
+
+        # if message_type == "set_speeds":
+        #     self.robot.drive_system.set_speeds(message_payload[0], message_payload[1], message_payload[2], message_payload[3]) 
+
+        # if message_type == "stop":
+        #     self.robot.drive_system.stop() 
+
+        # if message_type == "beep":
+        #     self.robot.buzzer.beep(on_time=0.1, off_time=0.3, n=2)  
+
+        # if message_type == "is_streaming":
+        #     self.is_streaming = message_payload
+
+        # if message_type == "mode":
+        #     self.mode = message_payload
+        #     if self.mode == "drive_until_wall" or self.mode == "drive_until_line":
+        #         self.robot.drive_system.go(25, 25)
+        #     if self.mode == "none":
+        #         self.robot.drive_system.stop()
 
 
 def main():
